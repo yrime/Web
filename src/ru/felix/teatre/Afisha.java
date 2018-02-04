@@ -1,7 +1,7 @@
 package ru.felix.teatre;
 
 import java.util.Date;
-
+//Affiche or Afisha or Poster? This class implemants 3 param from teatre
 public final class Afisha implements Afishable {
 
 	private Date data;
