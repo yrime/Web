@@ -5,12 +5,17 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
 	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/jdbc
 		http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
 		http://www.springframework.org/schema/context
-  		http://www.springframework.org/schema/context/spring-context.xsd">
+  		http://www.springframework.org/schema/context/spring-context.xsd
+  		http://www.springframework.org/schema/data/jpa
+		http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+	
+	
 	
 	<bean id="dataSource"
 		class="org.apache.commons.dbcp.BasicDataSource"
@@ -19,6 +24,9 @@
 		p:url="${jdbc.url}"
 		p:username="${jdbc.username}"
 		p:password="${jdbc.password}"/>
+	
+	<bean id="queryService"
+		class="ru.felix.connection.QueryServiceImpl"/>
 	
 	<context:property-placeholder
 		location="classpath:META-INF/config/jdbc.properties"/>
@@ -29,6 +37,23 @@
 	-->
 	
 	<bean id="connDb" class="ru.felix.connection.ConnectionDb"
-		p:dataSource-ref="dataSource"/>
+		p:dataSource-ref="dataSource"
+		p:queryService-ref="queryService"/>
+	
+	<bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="showSql" value="true" />
+				<property name="database" value="PostgreSql" />
+				<property name="databasePlatform" value="org.hibernate.dialect.ProgressDialect" />
+			</bean>
+		</property>
+		<property name="packagesToScan" value="ru.felix"/>
+	</bean>
+	
+	<context:component-scan base-package="ru.felix"/>
+	
+	<jpa:repositories base-package="ru.felix" entity-manager-factory-ref="emf" transaction-manager-ref="transactionManager"/>
 	
 </beans>

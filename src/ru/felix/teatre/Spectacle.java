@@ -1,8 +1,9 @@
 package ru.felix.teatre;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Spectacle implements Spectaclable {
+public class Spectacle implements Spectaclable, Serializable {
 
 	private String name;
 	
@@ -18,7 +19,6 @@ public class Spectacle implements Spectaclable {
 		this.name = name2;
 	}
 
-	@Override
 	public String getSpectacleName() {
 		// TODO Auto-generated method stub
 		return this.name;

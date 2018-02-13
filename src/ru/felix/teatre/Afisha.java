@@ -1,8 +1,9 @@
 package ru.felix.teatre;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public final class Afisha implements Afishable {
+public final class Afisha implements Afishable{
 
 	private Date data;
 	private Spectaclable spect;

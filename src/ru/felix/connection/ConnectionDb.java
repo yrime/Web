@@ -12,7 +12,9 @@ public class ConnectionDb implements InitializingBean {
 	
 	private DataSource dataSource;
 	private JdbcTemplate jdbcTemplate;
-		
+	
+	private QueryService queryService;
+	
 	public JdbcTemplate getJdbcTemplate() {
 		if(jdbcTemplate == null) {
 			throw new BeanCreationException("Null JdbcTemplate");
@@ -20,37 +22,14 @@ public class ConnectionDb implements InitializingBean {
 		return this.jdbcTemplate;
 	}
 	
-	/*public Object query(String query, String type) {
-		
-		switch(type) {
-			case "SHOW":
-			case "show":
-				return null;
-			case "SELECT":
-			case "select":
-				return null;
-			case "INSERT":
-			case "insert":
-				return null;
-			case "UPDATE":
-			case "update":
-				return null;
-			case "DELETE":
-			case "delete":
-				return null;
-			case "DROP":
-			case "drop":
-				return null;
-			case "CASTOM":
-				return null;
-			default:
-				break;
-		}
-		
-		return jdbcTemplate.queryForList(
-                "select * from salle"               ); 
+	public Object query(String query, String type) {
+		return queryService.getAllPlace();
 	}
-	*/
+	
+	public void setQueryService(QueryService queryService) {
+		this.queryService = queryService;
+	}
+	
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 		

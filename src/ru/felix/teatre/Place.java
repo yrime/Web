@@ -1,13 +1,21 @@
 package ru.felix.teatre;
 
-public class Place implements Placable, Comparable<Object> {
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name="salle")
+public class Place implements Placable, Comparable<Object>, Serializable {
 
 	private int row;
 	private int place;
 	private byte status = 0;
 	private int price;
 	
-	@Override
 	public int compareTo(Object obj) {
 		if(
 			row == ((Placable)obj).getRow() &&
@@ -38,32 +46,28 @@ public class Place implements Placable, Comparable<Object> {
 		this.Place(row, place, (byte)0, 0);
 	}
 	private Place() {}
-	@Override
+	
+	@Column(name="row")
 	public int getRow() {
 		return this.row;
 	}
-
-	@Override
+	@Column(name="place")
 	public int getPlace() {
 		return this.place;
 	}
-
-	@Override
+	@Column(name="status")
 	public byte getStatus() {
 		return this.status;
 	}
 
-	@Override
 	public void setStatus(byte status) {
 		this.status = status;
 	}
 
-	@Override
 	public int getPrice() {
 		return this.price;
 	}
 
-	@Override
 	public void setPrice(int price) {
 		this.price = price;
 	}

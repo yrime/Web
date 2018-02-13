@@ -1,5 +1,6 @@
 package ru.felix.teatre;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-public class Salle implements Sallable {
+public class Salle implements Sallable, Serializable {
 	
 	private HashMap<Integer, List<Place>> places;
 	private String name = "";
@@ -43,13 +44,11 @@ public class Salle implements Sallable {
 		return false;	
 	}
 	
-	@Override
 	public Map<Integer, List<Place>> getSalle() {
 		this.checkToNull(this.places);
 		return this.places;
 	}
 
-	@Override
 	public void setSalle(Map<Integer, List<Place>> salle) {
 		if(this.places == null) {
 			this.places = (HashMap<Integer, List<Place>>) salle;
@@ -58,7 +57,6 @@ public class Salle implements Sallable {
 		}
 	}
 
-	@Override
 	public void setPlace(Place place) {
 		int row = place.getRow();
 		if(this.places == null) {
@@ -73,19 +71,16 @@ public class Salle implements Sallable {
 		}
 	}
  
-	@Override
 	public Placable getPlace(int row, int place) {
 		this.checkToNull(this.places);
 		return this.places.get(row).get(place);
 	}
 
-	@Override
 	public int getRowMax() {
 		this.checkToNull(this.places);
 		return (this.places.keySet().size() - 1);
 	}
 
-	@Override
 	public int getPlaceMax() {
 		this.checkToNull(this.places);
 		int max = 0;
@@ -99,7 +94,6 @@ public class Salle implements Sallable {
 		return max;
 	}
 
-	@Override
 	public int getPlaceMax(int row) {
 		this.checkToNull(this.places);
 		if(this.places.containsKey(row)) {

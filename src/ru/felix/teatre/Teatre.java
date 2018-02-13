@@ -1,11 +1,12 @@
 package ru.felix.teatre;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Teatre implements Teatrable {
+public class Teatre implements Teatrable, Serializable {
 
 	private HashMap<String, Sallable> salles;
 	private ArrayList<Spectaclable> spectacles;
@@ -28,7 +29,6 @@ public class Teatre implements Teatrable {
 		return this.instance;
 	}
 	
-	@Override
 	public Map<String, Sallable> getSalles() {
 		if(salles == null) {
 			throw new NullPointerException("you must initializing salles");
@@ -36,7 +36,6 @@ public class Teatre implements Teatrable {
 		return this.salles;
 	}
 
-	@Override
 	public void setSalles(Map<String, Sallable> salles) {
 		if(this.salles == null) {
 			this.salles = (HashMap<String, Sallable>) salles;
@@ -45,7 +44,6 @@ public class Teatre implements Teatrable {
 		}
 	}
 
-	@Override
 	public Sallable getSalle(String salleId) {
 		if(salles == null) {
 			throw new NullPointerException("you must initializing salles");
@@ -53,7 +51,6 @@ public class Teatre implements Teatrable {
 		return this.salles.get(salleId);
 	}
 
-	@Override
 	public void setSalle(String salleKey, Sallable salle) {
 		if(this.salles == null) {
 			this.salles = new HashMap<String, Sallable>();
@@ -62,7 +59,6 @@ public class Teatre implements Teatrable {
 		this.salles.put(salleKey, salle);
 	}
 
-	@Override
 	public List<Spectaclable> getSpectacles() {
 		if(this.spectacles == null) {
 			throw new NullPointerException("spectacles must be initializing");
@@ -70,7 +66,6 @@ public class Teatre implements Teatrable {
 		return this.spectacles;
 	}
 
-	@Override
 	public void setSpectacles(List<Spectaclable> spectacles) {
 		if(this.spectacles == null) {
 			this.spectacles = (ArrayList<Spectaclable>) spectacles;
@@ -79,7 +74,6 @@ public class Teatre implements Teatrable {
 		}
 	}
 
-	@Override
 	public void setSpectacle(Spectaclable spectacle) {
 		if(this.spectacles == null) {
 			this.spectacles = new ArrayList<Spectaclable>();
@@ -87,7 +81,6 @@ public class Teatre implements Teatrable {
 		this.spectacles.add(spectacle);
 	}
 
-	@Override
 	public List<Afishable> getLink() {
 		if(link == null) {
 			throw new NullPointerException("Link of affichable is null");
@@ -95,7 +88,6 @@ public class Teatre implements Teatrable {
 		return this.link;
 	}
 
-	@Override
 	public void setLink(List<Afishable> link) {
 		if(this.link == null) {
 			this.link = (ArrayList<Afishable>) link;
@@ -104,7 +96,6 @@ public class Teatre implements Teatrable {
 		}
 	}
 
-	@Override
 	public void setLink(Afishable link) {
 		if(this.link == null) {
 			this.link = new ArrayList<Afishable>();
