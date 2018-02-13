@@ -3,7 +3,9 @@ package ru.felix.teatre;
 import java.io.Serializable;
 import java.util.Date;
 
-public final class Afisha implements Afishable{
+//Affiche or Afisha or Poster? This class implemants 3 param from teatre
+public final class Afisha implements Afishable {
+
 
 	private Date data;
 	private Spectaclable spect;
